@@ -1,0 +1,21 @@
+{
+  "name": "saascannon",
+  "version": "0.0.2",
+  "description": "Node.js package for interfacing with the Saascannon API",
+  "main": "client/index.ts",
+  "type": "module",
+  "scripts": {
+    "gen-package-lock": "npm i --package-lock-only --workspaces false",
+    "dev": "nodemon --exec \"npx openapi-typescript-codegen --input openapi-spec/spec/openapi.json --output client --name Saascannon\" --useUnionTypes",
+    "build": "npx openapi-typescript-codegen --input openapi-spec/spec/openapi.json --output client --name Saascannon --useUnionTypes"
+  },
+  "keywords": [
+    "Saascannon"
+  ],
+  "author": "Saascannon",
+  "devDependencies": {
+    "nodemon": "^2.0.22",
+    "openapi-typescript-codegen": "^0.23.0"
+  },
+  "license": "MIT"
+}
