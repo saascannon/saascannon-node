@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "gen-package-lock": "npm i --package-lock-only --workspaces false",
-    "dev": "nodemon --exec \"npx openapi-typescript-codegen --input openapi-spec/spec/openapi.json --output client --name Saascannon\" --useUnionTypes",
-    "build": "npx openapi-typescript-codegen --input openapi-spec/spec/openapi.json --output client --name Saascannon --useUnionTypes"
+    "dev": "nodemon --exec \"openapi --input openapi-spec/spec/openapi.json --output client --name Saascannon\" --useUnionTypes",
+    "build": "openapi --input openapi-spec/spec/openapi.json --output client --name Saascannon --useUnionTypes"
   },
   "keywords": [
     "Saascannon"
