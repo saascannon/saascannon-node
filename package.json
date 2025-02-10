@@ -1,6 +1,6 @@
 {
   "name": "saascannon",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Node.js package for interfacing with the Saascannon API",
   "main": "client/index.ts",
   "type": "module",
