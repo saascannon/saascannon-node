@@ -33,12 +33,14 @@ jobs:
         run: |
           if [ ${{ steps.prev_version.outputs.PREV_VERSION }} != ${{ steps.new_version.outputs.NEW_VERSION }} ]; then
             echo "Version change detected: ${{ steps.prev_version.outputs.PREV_VERSION }} -> ${{ steps.new_version.outputs.NEW_VERSION }}"
+            echo "version_changed=true" >> "$GITHUB_ENV"
           else
             echo "No version change, skipping release."
-            exit 0
+            echo "version_changed=false" >> "$GITHUB_ENV"
           fi
 
       - name: Authenticate using GitHub App
+        if: env.version_changed == 'true'
         id: get_installation_token
         uses: tibdex/github-app-token@v2
         with:
@@ -46,6 +48,7 @@ jobs:
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
 
       - name: Release
+        if: env.version_changed == 'true'
         uses: softprops/action-gh-release@v2
         with:
           body: "Release ${{ steps.prev_version.outputs.PREV_VERSION }} -> ${{ steps.new_version.outputs.NEW_VERSION }}"
